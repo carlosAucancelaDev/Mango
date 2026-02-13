@@ -1,0 +1,15 @@
+# Build
+bin/
+obj/
+
+# VS
+.vs/
+*.user
+*.suo
+*.sln.docstates
+
+# Logs
+*.log
+
+# Config sensibles
+appsettings.Development.json
