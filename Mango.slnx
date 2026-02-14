@@ -8,4 +8,5 @@
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
   </Folder>
+  <Project Path="Mango.Web/Mango.Web.csproj" Id="6c4bb839-792c-4d72-93ee-cb228876559a" />
 </Solution>
