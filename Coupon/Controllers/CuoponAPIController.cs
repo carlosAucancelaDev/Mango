@@ -54,5 +54,78 @@ namespace Mango.Services.CouponAPI.Controllers
             }
             return _response;
         }
+
+        [HttpGet]
+        [Route("GetByCode/{code}")]
+        public ResponseDto GetByCode(string code)
+        {
+            try
+            {
+                Cuopon obj = _db.Coupons.First(u => u.CuoponCode.ToLower() == code.ToLower());  // FirstOrDefault allow to return a empty data, First create an exception 
+
+                _response.Result = _mapper.Map<CuoponDto>(obj);  //We are converting from Cuopon type to CuoponDto
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
+
+        [HttpPost]
+        public ResponseDto Post([FromBody]CuoponDto cuoponDto)
+        {
+            try
+            {
+                Cuopon obj = _mapper.Map<Cuopon>(cuoponDto);
+                _db.Coupons.Add(obj);
+                _db.SaveChanges();
+
+                _response.Result = _mapper.Map<CuoponDto>(obj);  //We are converting from Cuopon type to CuoponDto
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
+
+        [HttpPut]
+        public ResponseDto Put([FromBody] CuoponDto cuoponDto)
+        {
+            try
+            {
+                Cuopon obj = _mapper.Map<Cuopon>(cuoponDto);
+                _db.Coupons.Update(obj);
+                _db.SaveChanges();
+
+                _response.Result = _mapper.Map<CuoponDto>(obj);  
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
+
+        [HttpDelete]
+        public ResponseDto Delete(int id)
+        {
+            try
+            {
+                Cuopon obj = _db.Coupons.First(x => x.CuoponId == id);
+                _db.Coupons.Remove(obj);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
     }
 }
