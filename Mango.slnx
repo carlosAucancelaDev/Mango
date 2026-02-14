@@ -5,4 +5,7 @@
   <Folder Name="/Services/">
     <Project Path="Coupon/Mango.Services.CouponAPI.csproj" />
   </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+  </Folder>
 </Solution>
