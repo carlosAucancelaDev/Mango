@@ -1,4 +1,5 @@
-﻿using Azure;
+﻿using AutoMapper;
+using Azure;
 using Mango.Services.CouponAPI.Data;
 using Mango.Services.CouponAPI.Models;
 using Mango.Services.CouponAPI.Models.Dto;
@@ -11,12 +12,13 @@ namespace Mango.Services.CouponAPI.Controllers
     {
         private readonly AppDbContext _db;
         private ResponseDto _response;
+        private IMapper _mapper;
 
-        public CuoponAPIController(AppDbContext db)
+        public CuoponAPIController(AppDbContext db, IMapper mapper)
         {
             _db = db;
             _response = new ResponseDto();
-
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -25,8 +27,8 @@ namespace Mango.Services.CouponAPI.Controllers
             try
             {
                 IEnumerable<Cuopon> objList = _db.Coupons.ToList();
-                
-                _response.Result = objList;
+
+                _response.Result = _mapper.Map<IEnumerable<CuoponDto>>(objList);
             }
             catch (Exception ex)
             {
@@ -42,7 +44,8 @@ namespace Mango.Services.CouponAPI.Controllers
         {
             try
             {
-                _response.Result = _db.Coupons.First(u => u.CuoponId == id);
+                Cuopon obj = _db.Coupons.First(u => u.CuoponId == id);
+                _response.Result = _mapper.Map<CuoponDto>(obj);  //We are converting from Cuopon type to CuoponDto
             }
             catch (Exception ex)
             {
