@@ -9,23 +9,23 @@ namespace Mango.Services.CouponAPI.Data
         {
         }
 
-        public DbSet<Cuopon> Coupons { get; set; }
+        public DbSet<Coupon> Coupons { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Cuopon>().HasData(new Cuopon
+            modelBuilder.Entity<Coupon>().HasData(new Coupon
             {
-                CuoponId = 1,
-                CuoponCode = "ab22",
+                CouponId = 1,
+                CouponCode = "ab22",
                 DiscountAmount = 23,
                 MinAmount = 12
             });
-            modelBuilder.Entity<Cuopon>().HasData(new Cuopon
+            modelBuilder.Entity<Coupon>().HasData(new Coupon
             {
-                CuoponId = 2,
-                CuoponCode = "gfdg22",
+                CouponId = 2,
+                CouponCode = "gfdg22",
                 DiscountAmount = 233,
                 MinAmount = 44
             });

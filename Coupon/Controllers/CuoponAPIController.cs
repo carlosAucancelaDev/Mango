@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
-using Azure;
-using Mango.Services.CouponAPI.Data;
 using Mango.Services.CouponAPI.Models;
+using Mango.Services.CouponAPI.Data;
 using Mango.Services.CouponAPI.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mango.Services.CouponAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/coupon")]
     public class CuoponAPIController : ControllerBase
     {
         private readonly AppDbContext _db;
@@ -26,9 +25,9 @@ namespace Mango.Services.CouponAPI.Controllers
         {
             try
             {
-                IEnumerable<Cuopon> objList = _db.Coupons.ToList();
+                IEnumerable<Coupon> objList = _db.Coupons.ToList();
 
-                _response.Result = _mapper.Map<IEnumerable<CuoponDto>>(objList);
+                _response.Result = _mapper.Map<IEnumerable<CouponDto>>(objList);
             }
             catch (Exception ex)
             {
@@ -44,8 +43,8 @@ namespace Mango.Services.CouponAPI.Controllers
         {
             try
             {
-                Cuopon obj = _db.Coupons.First(u => u.CuoponId == id);
-                _response.Result = _mapper.Map<CuoponDto>(obj);  //We are converting from Cuopon type to CuoponDto
+                Coupon obj = _db.Coupons.First(u => u.CouponId == id);
+                _response.Result = _mapper.Map<CouponDto>(obj);  //We are converting from Cuopon type to CuoponDto
             }
             catch (Exception ex)
             {
@@ -61,9 +60,9 @@ namespace Mango.Services.CouponAPI.Controllers
         {
             try
             {
-                Cuopon obj = _db.Coupons.First(u => u.CuoponCode.ToLower() == code.ToLower());  // FirstOrDefault allow to return a empty data, First create an exception 
+                Coupon obj = _db.Coupons.First(u => u.CouponCode.ToLower() == code.ToLower());  // FirstOrDefault allow to return a empty data, First create an exception 
 
-                _response.Result = _mapper.Map<CuoponDto>(obj);  //We are converting from Cuopon type to CuoponDto
+                _response.Result = _mapper.Map<CouponDto>(obj);  //We are converting from Cuopon type to CuoponDto
             }
             catch (Exception ex)
             {
@@ -74,15 +73,15 @@ namespace Mango.Services.CouponAPI.Controllers
         }
 
         [HttpPost]
-        public ResponseDto Post([FromBody]CuoponDto cuoponDto)
+        public ResponseDto Post([FromBody]CouponDto couponDto)
         {
             try
             {
-                Cuopon obj = _mapper.Map<Cuopon>(cuoponDto);
+                Coupon obj = _mapper.Map<Coupon>(couponDto);
                 _db.Coupons.Add(obj);
                 _db.SaveChanges();
 
-                _response.Result = _mapper.Map<CuoponDto>(obj);  //We are converting from Cuopon type to CuoponDto
+                _response.Result = _mapper.Map<CouponDto>(obj);  //We are converting from Cuopon type to CuoponDto
             }
             catch (Exception ex)
             {
@@ -93,15 +92,15 @@ namespace Mango.Services.CouponAPI.Controllers
         }
 
         [HttpPut]
-        public ResponseDto Put([FromBody] CuoponDto cuoponDto)
+        public ResponseDto Put([FromBody] CouponDto couponDto)
         {
             try
             {
-                Cuopon obj = _mapper.Map<Cuopon>(cuoponDto);
+                Coupon obj = _mapper.Map<Coupon>(couponDto);
                 _db.Coupons.Update(obj);
                 _db.SaveChanges();
 
-                _response.Result = _mapper.Map<CuoponDto>(obj);  
+                _response.Result = _mapper.Map<CouponDto>(obj);  
             }
             catch (Exception ex)
             {
@@ -116,7 +115,7 @@ namespace Mango.Services.CouponAPI.Controllers
         {
             try
             {
-                Cuopon obj = _db.Coupons.First(x => x.CuoponId == id);
+                Coupon obj = _db.Coupons.First(x => x.CouponId == id);
                 _db.Coupons.Remove(obj);
                 _db.SaveChanges();
             }

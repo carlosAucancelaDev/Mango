@@ -11,8 +11,8 @@ namespace Mango.Services.CouponAPI
             //Automappers works automatically if the properties have the same name
             var mappingConfig = new MapperConfiguration(config =>
             {
-                config.CreateMap<CuoponDto, Cuopon>();
-                config.CreateMap<Cuopon, CuoponDto>();
+                config.CreateMap<CouponDto, Coupon>();
+                config.CreateMap<Coupon, CouponDto>();
             });
             return mappingConfig;
         }
