@@ -5,6 +5,10 @@
         // Make this nullable so assigning a possibly-null configuration value doesn't warn.
         public static string CuoponAPIBase { get; set; } = "https://localhost:7001";
         public static string AuthAPIBase { get; set; } = "https://localhost:7002";
+
+        public const string RoleAdmin = "ADMIN";
+        public const string RoleCustomer = "CUSTOMER";
+
         public enum ApiType
         {
             GET = 0,
