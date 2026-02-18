@@ -3,7 +3,7 @@
     public interface ITokenProvider
     {
         void SetToken(string token);
-        string? Gettoken();
+        string? GetToken();
         void ClearToken();
     }
 }
