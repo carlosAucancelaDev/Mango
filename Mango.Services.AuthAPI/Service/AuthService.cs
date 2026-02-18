@@ -100,12 +100,11 @@ namespace Mango.Services.AuthAPI.Service
                     return result.Errors.FirstOrDefault().Description;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
             }
-            return "Error encountered";
+            return "Error Encountered";
         }
     }
 }
