@@ -1,6 +1,7 @@
 using Mango.Web.Service;
 using Mango.Web.Service.IService;
 using Mango.Web.Utility;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,14 +12,16 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddHttpClient<ICouponService, CouponService>();
 
-//var cuoponApiBase = builder.Configuration["ServiceUrls:CuoponAPI"];
-//if (!string.IsNullOrWhiteSpace(cuoponApiBase))
-//{
-//    SD.CuoponAPIBase = cuoponApiBase;
-//}
+builder.Services.AddHttpClient<ICouponService, CouponService>();
+builder.Services.AddHttpClient<IAuthService, AuthService>();
+
+//SD.CuoponAPIBase = builder.Configuration["ServiceUrls:CouponAPI"];
+//SD.AuthAPIBase = builder.Configuration["ServiceUrls:AuthAPI"];
 
 builder.Services.AddScoped<IBaseService, BaseService>();
 builder.Services.AddScoped<ICouponService, CouponService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
 
 
 var app = builder.Build();
