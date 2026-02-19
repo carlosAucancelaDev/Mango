@@ -6,6 +6,7 @@
     <Project Path="Coupon/Mango.Services.CouponAPI.csproj" />
     <Project Path="Mango.Services.AuthAPI/Mango.Services.AuthAPI.csproj" Id="e755218f-95e6-40f4-a8a0-5704340b02e7" />
     <Project Path="Mango.Services.ProductAPI/Mango.Services.ProductAPI.csproj" Id="fc5be433-89dd-4bb9-9d3e-8a670b173ac9" />
+    <Project Path="Mango.Services.ShoppingCartAPI/Mango.Services.ShoppingCartAPI.csproj" Id="78e9849e-4216-4fbc-bb87-8ff5ec7ffd30" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
